@@ -8,7 +8,7 @@ Motor de juegos universal con IA integrada que permite crear experiencias intera
 - **IA Integrada**: Asistente inteligente para desarrollo
 - **Arquitectura Modular**: Componentes reutilizables y extensibles
 - **Sistema de Palabras Clave**: Interacción natural con el motor
-- **Múltiples Engines**: Soporte para Three.js, Babylon.js, Kaplay y más
+- **Múltiples Engines**: Soporte para Three.js, Babylon.js, Kaplay, Phaser, PixiJS y próximamente Unity, Unreal, Godot y Cave
 
 ## 📁 Estructura del Proyecto
 

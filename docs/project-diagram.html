@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engine Integration - Diagrama del Proyecto</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.8;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .diagram-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .status-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+        }
+        
+        .status-card.completed {
+            border-left-color: #27ae60;
+        }
+        
+        .status-card.in-progress {
+            border-left-color: #f39c12;
+        }
+        
+        .status-card.pending {
+            border-left-color: #e74c3c;
+        }
+        
+        .status-card h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        
+        .status-card ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .status-card li {
+            margin: 5px 0;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        
+        .completed-color { background-color: #27ae60; }
+        .in-progress-color { background-color: #f39c12; }
+        .pending-color { background-color: #e74c3c; }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Engine Integration Project</h1>
+            <p>Diagrama completo del proyecto - Estructura, progreso y arquitectura</p>
+        </div>
+        
+        <div class="content">
+            <!-- Estadísticas del Proyecto -->
+            <div class="section">
+                <h2>📊 Estadísticas del Proyecto</h2>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Fases Totales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Completadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">En Progreso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Pendientes</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Arquitectura del Sistema -->
+            <div class="section">
+                <h2>🏗️ Arquitectura del Sistema</h2>
+                <div class="diagram-container">
+                    <div class="mermaid">
+graph TB
+    subgraph FRONTEND["🌐 FRONTEND LAYER"]
+        A["🔐 Login Page"] --> B["🎮 Motor Manual (Principal)"]
+        B --> C["📊 Dashboard"]
+        C --> D["👤 Profile Page"]
+        
+        subgraph COMPONENTS["🧩 Components"]
+            E["📋 Header"]
+            F["📂 Sidebar"]
+            G["🔧 Toolbar"]
+            H["📝 Project List"]
+            I["⚙️ Settings Panel"]
+        end
+    end
+    
+    subgraph BACKEND["⚡ BACKEND LAYER"]
+        J["🔐 Auth Service"] --> K["🎮 Game Server"]
+        K --> L["📁 Project Manager"]
+        L --> M["💾 Storage Service"]
+        
+        subgraph ENDPOINTS["🔌 API Endpoints"]
+            N["/api/auth/*"]
+            O["/api/game/*"]
+            P["/api/assets/*"]
+        end
+    end
+    
+    subgraph DATA["💾 DATA LAYER"]
+        Q[("👤 User Database")]
+        R[("📁 Project Storage")]
+        S[("🖼️ Asset Storage")]
+        T["🔑 JWT Tokens"]
+    end
+    
+    subgraph KAPLAY["🎮 KAPLAY ENGINE"]
+        U["🖼️ Viewport Manual"]
+        V["🗺️ Map Generator"]
+        W["💾 Save System"]
+        X["🎨 Asset Manager"]
+        Y["🎯 Controles Manuales"]
+        Z["🖱️ Drag & Drop"]
+        AA["⌨️ Shortcuts"]
+    end
+    
+    subgraph AI["🤖 IA OPCIONAL"]
+        BB["💬 Chat Interface"]
+        CC["🎯 Command Parser"]
+        DD["🔄 AI Controller"]
+    end
+    
+    A --> J
+    B --> K
+    J --> Q
+    K --> R
+    L --> S
+    B --> U
+    U --> V
+    V --> W
+    W --> X
+    X --> Y
+    Y --> Z
+    Z --> AA
+    
+    BB -.-> B
+    CC -.-> U
+    DD -.-> Y
+    
+    style A fill:#e8f5e8
+    style B fill:#e8f5e8
+    style C fill:#e8f5e8
+    style J fill:#fff2e8
+    style K fill:#fff2e8
+    style L fill:#fff2e8
+    style Q fill:#f0f8ff
+    style R fill:#f0f8ff
+    style S fill:#f0f8ff
+    style U fill:#f5e8ff
+    style V fill:#f5e8ff
+    style W fill:#f5e8ff
+    style BB fill:#ffe0f0,stroke-dasharray: 5 5
+    style CC fill:#ffe0f0,stroke-dasharray: 5 5
+    style DD fill:#ffe0f0,stroke-dasharray: 5 5
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estructura de Directorios -->
+            <div class="section">
+                <h2>📁 Estructura de Directorios</h2>
+                <div class="diagram-container">
+                    <div class="mermaid">
+graph TD
+    A["📁 engine-integration/"] --> B["📄 README.md"]
+    A --> C["📋 todo-list.md"]
+    A --> D["🏗️ architecture.md"]
+    A --> E["📊 project-diagram.html"]
+    A --> F["📦 package.json"]
+    A --> G["⚙️ vercel.json"]
+    
+    A --> H["📁 src/"]
+    H --> I["🔐 auth/"]
+    H --> J["🎮 game/"]
+    H --> K["🧩 components/"]
+    H --> L["📄 pages/"]
+    H --> M["🔧 utils/"]
+    
+    I --> I1["login.html"]
+    I --> I2["auth.js"]
+    I --> I3["callback.js"]
+    
+    J --> J1["server.js"]
+    J --> J2["game-engine.js"]
+    J --> J3["viewport.js"]
+    J --> J4["controls.js"]
+    
+    K --> K1["header.js"]
+    K --> K2["sidebar.js"]
+    K --> K3["toolbar.js"]
+    
+    A --> N["📁 public/"]
+    N --> O["🎨 css/"]
+    N --> P["⚡ js/"]
+    N --> Q["🖼️ assets/"]
+    
+    O --> O1["main.css"]
+    O --> O2["auth.css"]
+    O --> O3["game.css"]
+    
+    A --> R["📁 config/"]
+    R --> R1["tsconfig.json"]
+    R --> R2["eslint.config.js"]
+    
+    A --> S["📁 docs/"]
+    S --> S1["api.md"]
+    S --> S2["deployment.md"]
+    
+    style A fill:#e8f5e8
+    style H fill:#fff2e8
+    style N fill:#f0f8ff
+    style R fill:#f5e8ff
+    style S fill:#ffe8f5
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flujo de Autenticación -->
+            <div class="section">
+                <h2>🔐 Flujo de Autenticación</h2>
+                <div class="diagram-container">
+                    <div class="mermaid">
+sequenceDiagram
+    participant U as 👤 Usuario
+    participant L as 🔐 Login Page
+    participant O as 🔗 OAuth Provider
+    participant A as ⚡ Auth Service
+    participant G as 🎮 Game Engine
+    
+    U->>L: 1. Accede a /
+    L->>U: 2. Muestra opciones de login
+    U->>L: 3. Selecciona OAuth (Google/GitHub)
+    L->>O: 4. Redirección a proveedor
+    O->>U: 5. Solicita autorización
+    U->>O: 6. Autoriza aplicación
+    O->>A: 7. Callback con código
+    A->>O: 8. Intercambia código por token
+    O->>A: 9. Retorna token de acceso
+    A->>A: 10. Genera JWT interno
+    A->>G: 11. Redirección a /game
+    G->>A: 12. Valida JWT en cada request
+    A->>G: 13. Autoriza acceso
+    G->>U: 14. Muestra interfaz del motor
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estado de las Tareas -->
+            <div class="section">
+                <h2>📋 Estado de las Tareas</h2>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color completed-color"></div>
+                        <span>Completado</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color in-progress-color"></div>
+                        <span>En Progreso</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color pending-color"></div>
+                        <span>Pendiente</span>
+                    </div>
+                </div>
+                
+                <div class="status-grid">
+                    <div class="status-card completed">
+                        <h3>✅ Completadas</h3>
+                        <ul>
+                            <li>Crear estructura de carpetas del proyecto</li>
+                            <li>Crear todo-list.md detallado</li>
+                            <li>Crear architecture.md con documentación técnica</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="status-card in-progress">
+                        <h3>🔄 En Progreso</h3>
+                        <ul>
+                            <li>Crear diagrama Mermaid del proyecto completo</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="status-card pending">
+                        <h3>⏳ Pendientes - Fase 2</h3>
+                        <ul>
+                            <li>Copiar y adaptar sistema de autenticación</li>
+                            <li>Configurar estructura base del servidor</li>
+                            <li>Implementar páginas principales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="status-card pending">
+                        <h3>⏳ Pendientes - Fases 3-8</h3>
+                        <ul>
+                            <li>Integrar motor Kaplay</li>
+                            <li>Crear componentes de UI</li>
+                            <li>Implementar sistema de guardado</li>
+                            <li>Configurar deployment</li>
+                            <li>Testing y optimización</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roadmap del Proyecto -->
+            <div class="section">
+                <h2>🗺️ Roadmap del Proyecto</h2>
+                <div class="diagram-container">
+                    <div class="mermaid">
+gantt
+    title Roadmap Engine Integration Project
+    dateFormat YYYY-MM-DD
+    section Fase 1 Estructura
+    Crear carpetas           :done, fase1a, 2025-01-01, 1d
+    Todo list               :done, fase1b, after fase1a, 1d
+    Architecture            :done, fase1c, after fase1b, 1d
+    Diagrama Mermaid        :active, fase1d, after fase1c, 1d
+    
+    section Fase 2 Autenticacion
+    Copiar auth system      :fase2a, after fase1d, 2d
+    Configurar servidor     :fase2b, after fase2a, 1d
+    Paginas principales     :fase2c, after fase2b, 2d
+    
+    section Fase 3 Motor Kaplay
+    Integrar Kaplay         :fase3a, after fase2c, 3d
+    Viewport component      :fase3b, after fase3a, 2d
+    Controles basicos       :fase3c, after fase3b, 2d
+    
+    section Fase 4 UI Components
+    Header y navegacion     :fase4a, after fase3c, 2d
+    Sidebar y toolbar       :fase4b, after fase4a, 2d
+    Panel configuracion     :fase4c, after fase4b, 1d
+    
+    section Fase 5 Funcionalidades
+    Sistema guardado        :fase5a, after fase4c, 3d
+    Generador mapas         :fase5b, after fase5a, 2d
+    Gestor proyectos        :fase5c, after fase5b, 2d
+    
+    section Fase 6 Estilos
+    CSS principal           :fase6a, after fase5c, 2d
+    Responsive design       :fase6b, after fase6a, 2d
+    Temas claro oscuro      :fase6c, after fase6b, 1d
+    
+    section Fase 7 Deployment
+    Configurar Vercel       :fase7a, after fase6c, 1d
+    Variables entorno       :fase7b, after fase7a, 1d
+    Deploy produccion       :fase7c, after fase7b, 1d
+    
+    section Fase 8 Testing
+    Tests unitarios         :fase8a, after fase7c, 2d
+    Tests integracion       :fase8b, after fase8a, 2d
+    Optimizacion final      :fase8c, after fase8b, 2d
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tecnologías Utilizadas -->
+            <div class="section">
+                <h2>🛠️ Stack Tecnológico</h2>
+                <div class="diagram-container">
+                    <div class="mermaid">
+graph LR
+    A["🚀 Engine Integration"] --> B["🌐 Frontend"]
+    A --> C["⚡ Backend"]
+    A --> D["🛠️ Tools"]
+    A --> E["💾 Storage"]
+    A --> F["🔐 Security"]
+    A --> G["🤖 AI Stack"]
+    
+    B --> B1["HTML5"]
+    B --> B2["CSS3"]
+    B --> B3["JavaScript ES6+"]
+    B --> B4["Kaplay Engine"]
+    
+    B2 --> B2a["Grid/Flexbox"]
+    B2 --> B2b["Responsive Design"]
+    
+    C --> C1["Node.js"]
+    C --> C2["Express.js"]
+    C --> C3["JWT Authentication"]
+    C --> C4["OAuth 2.0"]
+    
+    D --> D1["TypeScript"]
+    D --> D2["ESLint"]
+    D --> D3["Prettier"]
+    D --> D4["Vercel"]
+    
+    E --> E1["LocalStorage"]
+    E --> E2["SessionStorage"]
+    E --> E3["IndexedDB"]
+    E --> E4["Vercel KV"]
+    E --> E5["Vercel Blob"]
+    
+    F --> F1["HTTPS"]
+    F --> F2["CORS"]
+    F --> F3["Rate Limiting"]
+    F --> F4["Token Validation"]
+    
+    G --> G1["🎯 IA Propia"]
+    G --> G2["💰 DeepSeek API"]
+    G --> G3["🏠 Ollama Local"]
+    G --> G4["🔗 OpenAI API"]
+    
+    style A fill:#e8f5e8
+    style B fill:#fff2e8
+    style C fill:#f0f8ff
+    style D fill:#f5e8ff
+    style E fill:#ffe8f5
+    style F fill:#e8ffe8
+    style G fill:#ffe0f0
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Architecture -->
+            <div class="section">
+                <h2>🤖 Arquitectura del Sistema de IA</h2>
+                <div class="diagram-container">
+                    <div class="mermaid">
+graph TD
+    A["👤 Usuario"] --> B["💬 Interfaz Chat"]
+    B --> C["🎯 AI Controller Hub"]
+    
+    C --> D["📝 Command Parser"]
+    D --> E{"🤔 ¿Comando Básico?"}
+    
+    E -->|Sí| F["🎯 IA Propia<br/>Nivel 1"]
+    E -->|No| G{"🌐 ¿Internet?"}
+    
+    G -->|No| H["🏠 Ollama Local<br/>Nivel 3"]
+    G -->|Sí| I{"👑 ¿Premium?"}
+    
+    I -->|Sí| J["🔗 OpenAI API<br/>Nivel 4"]
+    I -->|No| K["💰 DeepSeek API<br/>Nivel 2"]
+    
+    F --> L["⚡ Cache de Respuestas"]
+    K --> L
+    H --> L
+    J --> L
+    
+    L --> M["🎮 Kaplay Engine Bridge"]
+    M --> N["🎯 Ejecución en Motor"]
+    
+    style F fill:#90EE90
+    style K fill:#87CEEB
+    style H fill:#DDA0DD
+    style J fill:#F0E68C
+    style C fill:#FFB6C1
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Decision Flow -->
+            <div class="section">
+                <h2>🔄 Flujo de Decisión de IA (Opcional)</h2>
+                <div class="diagram-container">
+                    <div class="mermaid">
+flowchart TD
+    Start["👤 Usuario"] --> Choice{"🎯 ¿Usar IA o Manual?"}
+    Choice -->|Manual| Manual["🖱️ Control Manual Directo"]
+    Choice -->|IA Opcional| Parse["💬 Comando de voz/texto"]
+    
+    Manual --> Engine["🎮 Kaplay Engine"]
+    
+    Parse --> Basic{"🔍 Analizar complejidad"}
+    Basic -->|Básico| Level1["🎯 IA Propia<br/>• Instantáneo<br/>• Sin costo<br/>• Comandos simples"]
+    Basic -->|Complejo| Internet{"🌐 ¿Internet disponible?"}
+    
+    Internet -->|No| Level3["🏠 Ollama Local<br/>• Offline<br/>• Privado<br/>• Llama 3.2 3B"]
+    Internet -->|Sí| Premium{"💰 ¿Presupuesto disponible?"}
+    
+    Premium -->|Sí| Level4["🚀 OpenAI API<br/>• GPT-4<br/>• Generación código<br/>• Comandos avanzados"]
+    Premium -->|No| Level2["💡 DeepSeek API<br/>• $0.14/1M tokens<br/>• Comandos complejos<br/>• Cache inteligente"]
+    
+    Level1 --> Execute["⚡ Ejecutar comando IA"]
+    Level2 --> Execute
+    Level3 --> Execute
+    Level4 --> Execute
+    
+    Execute --> Engine
+    Engine --> Result["✅ Resultado"]
+    
+    style Start fill:#e3f2fd
+    style Manual fill:#e8f5e8
+    style Engine fill:#f3e5f5
+    style Parse fill:#ffe0f0,stroke-dasharray: 5 5
+    style Execute fill:#ffe0f0,stroke-dasharray: 5 5
+    style Level1 fill:#90EE90
+    style Level2 fill:#87CEEB
+    style Level3 fill:#DDA0DD
+    style Level4 fill:#F0E68C
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Components -->
+            <div class="section">
+                <h2>🧩 Componentes del Sistema de IA</h2>
+                <div class="diagram-container">
+                    <div class="mermaid">
+graph LR
+    subgraph "🎯 Nivel 1: IA Propia"
+        A1["📝 Command Parser"]
+        A2["📚 Diccionario Acciones"]
+        A3["⚡ Respuestas Instantáneas"]
+    end
+    
+    subgraph "💰 Nivel 2: DeepSeek API"
+        B1["🌐 API Client"]
+        B2["💾 Response Cache"]
+        B3["🔄 Retry Logic"]
+    end
+    
+    subgraph "🏠 Nivel 3: Ollama Local"
+        C1["🖥️ Local Server"]
+        C2["🧠 Llama 3.2 3B"]
+        C3["📡 Offline Detector"]
+    end
+    
+    subgraph "🔗 Nivel 4: OpenAI API"
+        D1["🤖 GPT-4 Client"]
+        D2["👑 Premium Features"]
+        D3["🔧 Code Generation"]
+    end
+    
+    subgraph "🎮 Engine Bridge"
+        E1["🔄 Command Translator"]
+        E2["⚙️ Action Executor"]
+        E3["📊 Result Handler"]
+    end
+    
+    A1 --> E1
+    B1 --> E1
+    C1 --> E1
+    D1 --> E1
+    
+    style A1 fill:#90EE90
+    style B1 fill:#87CEEB
+    style C1 fill:#DDA0DD
+    style D1 fill:#F0E68C
+    style E1 fill:#FFB6C1
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración de Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            sequence: {
+                diagramMarginX: 50,
+                diagramMarginY: 10,
+                actorMargin: 50,
+                width: 150,
+                height: 65,
+                boxMargin: 10,
+                boxTextMargin: 5,
+                noteMargin: 10,
+                messageMargin: 35
+            },
+            gantt: {
+                titleTopMargin: 25,
+                barHeight: 20,
+                fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+                fontSize: 11,
+                gridLineStartPadding: 35,
+                bottomPadding: 25,
+                leftPadding: 75,
+                rightPadding: 35
+            }
+        });
+
+        // Función para actualizar estadísticas en tiempo real
+        function updateStats() {
+            const completedTasks = 3;
+            const inProgressTasks = 1;
+            const pendingTasks = 4;
+            const totalTasks = completedTasks + inProgressTasks + pendingTasks;
+            
+            console.log(`📊 Estadísticas del proyecto:
+            - Total de fases: ${totalTasks}
+            - Completadas: ${completedTasks}
+            - En progreso: ${inProgressTasks}
+            - Pendientes: ${pendingTasks}
+            - Progreso: ${Math.round((completedTasks / totalTasks) * 100)}%`);
+        }
+
+        // Ejecutar al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            console.log('🚀 Diagrama del proyecto Engine Integration cargado correctamente');
+        });
+    </script>
+</body>
+</html>

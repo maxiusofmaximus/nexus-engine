@@ -685,6 +685,44 @@ DELETE /api/assets/:id          # Eliminar asset
 
 ---
 
-*Documento actualizado: 30 de Octubre, 2025*
-*Versión: 1.0*
-*Autor: Engine Integration Team*
+## 🚀 **Roadmap de Motores**
+
+### **Motores Actuales (v1.0):**
+- ✅ **Kaplay Engine**: Motor 2D JavaScript completo
+- ✅ **Custom Engine**: Motor offline personalizado
+- 🔄 **Three.js**: Motor 3D con WebGL (en desarrollo)
+- 🔄 **Babylon.js**: Motor 3D profesional (en desarrollo)
+
+### **Próximos Motores (v1.1-1.2):**
+- 🔄 **Phaser**: Framework 2D robusto
+- 🔄 **PixiJS**: Renderer 2D ultra rápido
+- 🔮 **Unity**: Integración con Unity Engine
+- 🔮 **Unreal Engine**: Soporte para UE5
+- 🔮 **Godot**: Motor open source
+- 🔮 **Cave Engine**: Motor personalizado avanzado
+
+### **Arquitectura Multi-Motor:**
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Nexus Engine Core                    │
+├─────────────────────────────────────────────────────────┤
+│  API Unificada  │  Sistema IA  │  Palabras Clave       │
+├─────────────────────────────────────────────────────────┤
+│                  Adaptador de Motores                   │
+├─────────────────────────────────────────────────────────┤
+│ Kaplay │ Custom │ Three.js │ Babylon │ Phaser │ PixiJS │
+├─────────────────────────────────────────────────────────┤
+│        Unity    │    Unreal    │   Godot   │   Cave    │
+└─────────────────────────────────────────────────────────┘
+```
+
+### **Estrategia de Implementación:**
+1. **Fase Web**: Completar motores JavaScript (Three.js, Babylon.js, Phaser, PixiJS)
+2. **Fase Nativa**: Integrar motores nativos (Unity, Unreal, Godot)
+3. **Fase Avanzada**: Desarrollar Cave Engine personalizado
+
+---
+
+*Documento actualizado: Diciembre 2023*
+*Versión: 1.1*
+*Autor: Nexus Engine Team*
