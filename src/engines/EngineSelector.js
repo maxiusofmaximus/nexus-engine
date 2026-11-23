@@ -43,7 +43,7 @@ class EngineSelector {
             type: 'offline',
             description: 'Motor básico personalizado para uso offline',
             features: ['2D Graphics', 'Basic Physics', 'Input'],
-            localPath: './engines/CustomEngine.js',
+            localPath: './CustomEngine.js', // relativo a este módulo (src/engines/)
             documentation: './Guide.md#motor-propio',
             status: 'available',
             priority: 10 // Fallback priority

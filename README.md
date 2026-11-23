@@ -68,4 +68,4 @@ npm run docs
 
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+Binario y código bajo la licencia propietaria de [LICENSE](LICENSE).
