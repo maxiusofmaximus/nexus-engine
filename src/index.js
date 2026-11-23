@@ -8,6 +8,7 @@ import KeywordSystem from './systems/KeywordSystem.js';
 import EngineSelectorUI from './components/EngineSelector.js';
 // AIChat se crea solo en DOMContentLoaded (src/components/AIChat.js): no instanciar aquí o habría dos barras.
 import './components/AIChat.js';
+import { startDemo } from './demo/demoScene.js';
 
 async function main() {
     const engineSelector = new EngineSelector();
@@ -22,6 +23,7 @@ async function main() {
     const selection = await engineSelector.selectEngine('custom');
     window.game = new selection.instance();
     window.game.start();
+    startDemo(window.game);
 }
 
 main().catch(error => console.error('Error al arrancar Nexus Engine:', error));
